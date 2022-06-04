@@ -24,6 +24,15 @@ module.exports = (sequelize) => {
     },
     lifeSpan: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: true,
     },
   });
 };
+
+// ACA ME CREE LAS TABLAS, TIPO DE DATOS Y SUS ARGUMENTOS.
+// ESQUEMA PARA VALIDAR DATOS.

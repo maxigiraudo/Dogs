@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router(); // ME TRAIGO EL ROUTER
 const { Dog } = require("../db"); // ME TRAIGO LA TABLA DOG
-const getAllDogs = require("../"); // ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
+const getAllDogs = require("../controllers/getAllDogs"); // ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
 
 //SUB RUTAS.
 
