@@ -1,7 +1,10 @@
 const axios = require("axios");
+const API_KEY = process.env;
 
 module.exports = async function getApiInfo() {
-  const apiInfo = await axios.get("https://api.thedogapi.com/v1/breeds"); // me traigo datos de la api, aca espero la data de axios (data)
+  const apiInfo = await axios.get(
+    `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+  ); // me traigo datos de la api, aca espero la data de axios (data)
   const list = await apiInfo.data.map((dog) => {
     // hago listo de lo que necesito con map.
     return {

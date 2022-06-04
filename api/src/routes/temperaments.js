@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
     .map((dog) => dog.temperament)
     .join()
     .split(","); // ACA LO UNO Y LO SEPARO POR COMAS.
+
   const dogsDbTrim = dogsDb.map((dog) => dog.trim()); // ACA LE ELIMINO LOS ESPACIOS EN BLANCO
 
   dogsDbTrim.forEach((dog) => {

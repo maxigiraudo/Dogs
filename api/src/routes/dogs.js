@@ -4,7 +4,7 @@ const { Dog } = require("../db"); // ME TRAIGO LA TABLA DOG
 const getAllDogs = require("../controllers/getAllDogs"); // ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
 
 //SUB RUTAS.
-
+// (imagen, nombre y temperamento)
 // SI LE PASAS QUERY, TE TRAE UN SOLO PERRO; SI NO LE PASAS QUERY TE TRAE TODO. SI LE PASAS ALGO MAL, TIRA ERROR.
 router.get("/", async (req, res) => {
   //LOCALHOST/DOGS/ --- > HAGO ESTO , TRAE TODAS LAS RAZAS.
@@ -12,7 +12,13 @@ router.get("/", async (req, res) => {
   try {
     const { name } = req.query; // DESTRUCTURO EL ELEMENTO QUE VIAJA DE QUERY. ELEMENTO VIAJE DE RUTAS.
     const allDogs = await getAllDogs(); // CREO LA VARIABLE ALL DOGS Y ESPERA EL CONTROLADOR.
-
+    const rPrincipal = allDogs.map((e) => {
+      return {
+        name: e.name,
+        temperament: e.temperament,
+        img: e.img,
+      };
+    });
     if (name) {
       // SI EXISTE NAME
       const filtrado = allDogs.filter(
@@ -23,7 +29,7 @@ router.get("/", async (req, res) => {
       if (filtrado.length) return res.status(200).send(filtrado); // SI ES EL ARRAY TIENE INDICES, DEVOLVEME EL OK DEL STATUS. Y RESPONDE EL ARRAY QUE TIENE LOS DOGS FILTRADOS.
       return res.status(404).send("La raza ingresada no ha sido encontrada"); // SI NO, ES ARRAY VACIO, DEVOLVE ERROR.
     }
-    return res.status(200).send(allDogs); // SI ENCONTRO POR QUERY DEVOLVER ESE ELEMENTO.
+    return res.status(200).send(rPrincipal); // SI ENCONTRO POR QUERY DEVOLVER ESE ELEMENTO.
   } catch (e) {
     console.log(e);
     return res.status(404).json(e);
