@@ -19,5 +19,3 @@ module.exports = async function getApiInfo() {
   });
   return list;
 };
-
-// me traigo toda la api info.
