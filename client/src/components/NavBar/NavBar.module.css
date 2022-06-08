@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
+
+.navBar {
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBar ul li {
+  list-style: none;
+  display: inline-block;
+
+  margin: 10px 120px;
+}
