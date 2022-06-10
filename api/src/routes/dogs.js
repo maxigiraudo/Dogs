@@ -55,11 +55,12 @@ router.post("/new", async (req, res) => {
   // LOCALHOST/DOGS/NEW ACA CREO RAZAS. CON POST, Y ESTO SE DEPOSITA EN LA BASE DE DATOS.
 
   try {
-    const { name, height, weight, lifeSpan, createdInDb, temperament } =
-      req.body; // DESTRUCTURA REQ.BODY,
-    if (!name || !height || !weight)
+    const { name, height, weight, lifeSpan, temperament } = req.body; // DESTRUCTURA REQ.BODY,
+    if (!name || !height || !weight) {
       // SI NO EXISTE NOMBRE, ALTURA Y PESO, ARROJA ERROR.
-      return res.status(404).send("The name, height and weight are required"); // PIDE REQUISITOS.
+      return res.status(404).send("The name, height and weight are required");
+    } // PIDE REQUISITOS.
+
     const createdDog = await Dog.create({
       // CONST QUE CREA PERROS,
       name,
@@ -68,8 +69,8 @@ router.post("/new", async (req, res) => {
       lifeSpan,
     });
 
-    await createdDog.setTemperaments(temperament); // ACA SE UNE LAS TABLAS, DEL PERRO QUE CREE MAS EL TEMP.
-    return res.status(200).send("The dog has been successfully created"); // ACA DEVUELVE EL OK.
+    // await createdDog.setTemperament(temperament); // ACA SE UNE LAS TABLAS, DEL PERRO QUE CREE MAS EL TEMP.
+    return res.status(201).send(createdDog); // ACA DEVUELVE EL OK.
   } catch (err) {
     console.log(err);
     res.status(404).json(err); // SI NO DEVUELVE ERROR.

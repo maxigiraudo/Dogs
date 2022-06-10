@@ -5,28 +5,30 @@ const { Temperament } = require("../db"); // me traigo la tabla temperamento.
 
 router.get("/", async (req, res) => {
   // ACA ME TRAIGO LA INFO DE TEMP
+  let allTemperaments = await Temperament.findAll(); // TRAEME TODOS LOS TEMP.
 
-  const dogsApi = await apiInfo(); // ACA ME TRAIGO LA INFO DE LA API(CONTROLADOR).
-  const dogsDb = dogsApi
-    .map((dog) => dog.temperament)
-    .join()
-    .split(","); // ACA LO UNO Y LO SEPARO POR COMAS.
+  // SI ES LA PRIMERA VEZ Y NO TENGO NADA, LOS CREO DESDE LA API
+  if (allTemperaments.length === 0) {
+    let temperamentsRepeated = [];
+    const dogsApi = await apiInfo(); // ACA ME TRAIGO LA INFO DE LA API(CONTROLADOR).
 
-  const dogsDbTrim = dogsDb.map((dog) => dog.trim()); // ACA LE ELIMINO LOS ESPACIOS EN BLANCO
+    dogsApi.forEach((dog) => {
+      temperamentsRepeated = temperamentsRepeated.concat(dog.temperament);
+    });
 
-  dogsDbTrim.forEach((dog) => {
-    //LO RECORRO CON UN FOR EACH.
-    if (dog !== "") {
-      // SI ES DIFERENTE AL STRING VACIO QUE BUSQUE O CREE. SI NO LO ENCUENTRA LO CREA.
-      Temperament.findOrCreate({
-        where: {
-          name: dog,
-        },
-      });
-    }
-  });
+    const uniqueTemperaments = temperamentsRepeated.filter((temp, index) => {
+      return temperamentsRepeated.indexOf(temp) === index;
+    });
 
-  const allTemperaments = await Temperament.findAll(); // TRAEME TODOS LOS TEMP.
+    const temperamentsToInsert = uniqueTemperaments.map((temp) => {
+      // temperamentsToInsert = [{ name: 'Curious' }, { name: 'Funny' }, ...]
+      return {
+        name: temp,
+      };
+    });
+
+    allTemperaments = await Temperament.bulkCreate(temperamentsToInsert);
+  }
 
   return res.status(200).send(allTemperaments); // RETORNAME EL ESTADO OK
 });

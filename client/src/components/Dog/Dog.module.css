@@ -1,0 +1,19 @@
+.imagen {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.card {
+  background-color: dimgrey;
+  width: 250px;
+  height: fit-content;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.card a {
+  text-decoration: none;
+  color: black;
+}

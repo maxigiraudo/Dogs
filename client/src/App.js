@@ -1,10 +1,10 @@
 import "./App.css";
-import Dogs from "./components/Dogs";
+import Dogs from "./components/Dogs/Dogs";
 import Inicial from "./components/Inicial";
 import Order from "./components/Order";
 import SearchBar from "./components/SearchBar";
 import { Switch, Route } from "react-router";
-import DogDetail from "./components/DogDetail";
+import DogDetail from "./components/DogDetail/DogDetail";
 import AddDog from "./components/AddDog";
 import NavBar from "./components/NavBar/NavBar";
 import Filter from "./components/Filter/Filter";

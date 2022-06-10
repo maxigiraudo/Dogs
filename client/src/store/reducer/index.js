@@ -1,6 +1,7 @@
 import { ASCENDENTE, DESCENDENTE } from "../../constantes/sort";
 import {
   FETCH_DOGS,
+  FETCH_TEMPERAMENTS,
   FILTER_TEMPERAMENT,
   SEARCH_DOGS,
   SORT,
@@ -10,6 +11,7 @@ import {
 const initialState = {
   dogs: [],
   filteredDogs: [],
+  temperaments: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -19,6 +21,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         dogs: action.payload,
         filteredDogs: action.payload,
+      };
+    case FETCH_TEMPERAMENTS:
+      const temperaments = action.payload.map((temp) => temp.name);
+
+      return {
+        ...state,
+        temperaments,
       };
     case SEARCH_DOGS:
       return {

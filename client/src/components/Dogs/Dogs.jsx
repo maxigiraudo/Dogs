@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDogs } from "../store/actions";
-import Dog from "./Dog";
+import { fetchDogs, fetchTemperaments } from "../../store/actions";
+import Dog from "../Dog/Dog";
+import styles from "./Dogs.module.css";
 
 export default function Dogs() {
   let dogs = useSelector((state) => state.filteredDogs);
@@ -9,10 +10,11 @@ export default function Dogs() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDogs());
+    dispatch(fetchTemperaments());
   }, []);
 
   return (
-    <div>
+    <div className={styles.carDog}>
       {dogs.map((e) => {
         return (
           <Dog
@@ -20,7 +22,7 @@ export default function Dogs() {
             id={e.id}
             img={e.img}
             name={e.name}
-            temperament={e.temperament.join(", ")}
+            temperament={e.temperament}
             weight={e.weight}
           />
         );
