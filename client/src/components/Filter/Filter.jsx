@@ -12,7 +12,7 @@ export default function Filter() {
     let fil = dogs.filter((e) => {
       if (!e.temperament) {
         console.log(e);
-        debugger;
+
         return false;
       }
       return e.temperament.includes(valor);

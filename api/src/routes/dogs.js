@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const router = Router(); // ME TRAIGO EL ROUTER
-const { Dog } = require("../db"); // ME TRAIGO LA TABLA DOG
-const getAllDogs = require("../controllers/getAllDogs"); // ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
+const { Dog, Temperament } = require("../db"); // ME TRAIGO LA TABLA DOG
+const getAllDogs = require("../controllers/getAllDogs");
+// ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
 
 //SUB RUTAS.
 // (imagen, nombre y temperamento)
@@ -55,8 +56,18 @@ router.post("/new", async (req, res) => {
   // LOCALHOST/DOGS/NEW ACA CREO RAZAS. CON POST, Y ESTO SE DEPOSITA EN LA BASE DE DATOS.
 
   try {
-    const { name, height, weight, lifeSpan, temperament } = req.body; // DESTRUCTURA REQ.BODY,
-    if (!name || !height || !weight) {
+    const {
+      name,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
+      lifeSpan,
+      temperament,
+
+      img,
+    } = req.body; // DESTRUCTURA REQ.BODY,
+    if (!name || !heightMin || !heightMax || !weightMin || !weightMax) {
       // SI NO EXISTE NOMBRE, ALTURA Y PESO, ARROJA ERROR.
       return res.status(404).send("The name, height and weight are required");
     } // PIDE REQUISITOS.
@@ -64,12 +75,16 @@ router.post("/new", async (req, res) => {
     const createdDog = await Dog.create({
       // CONST QUE CREA PERROS,
       name,
-      height,
-      weight,
+      temperament,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
       lifeSpan,
+      img,
     });
 
-    // await createdDog.setTemperament(temperament); // ACA SE UNE LAS TABLAS, DEL PERRO QUE CREE MAS EL TEMP.
+    // ACA SE UNE LAS TABLAS, DEL PERRO QUE CREE MAS EL TEMP.
     return res.status(201).send(createdDog); // ACA DEVUELVE EL OK.
   } catch (err) {
     console.log(err);

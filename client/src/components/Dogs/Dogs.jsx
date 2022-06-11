@@ -24,6 +24,8 @@ export default function Dogs() {
             name={e.name}
             temperament={e.temperament}
             weight={e.weight}
+            weightMin={e.weightMin}
+            weightMax={e.weightMax}
           />
         );
       })}

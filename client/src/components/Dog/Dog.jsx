@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import styles from "./Dog.module.css";
 
-export default function Dog({ id, name, img, temperament, weight }) {
+export default function Dog({
+  id,
+  name,
+  img,
+  temperament,
+  weight,
+  weightMin,
+  weightMax,
+}) {
   function renderTemperaments(temperament) {
-    if (temperament && temperament.length > 0) {
+    if (temperament) {
       return temperament.join(", ");
     }
-    return "";
+    return "Error";
   }
 
   return (
@@ -14,7 +22,14 @@ export default function Dog({ id, name, img, temperament, weight }) {
       <Link to={`/${id}`}>
         <h3>{name}</h3>
         <img className={styles.imagen} src={img} alt="imagen" />
-        <h5>Peso: {weight} kg.</h5>
+        {weightMin && weightMax && !weight ? (
+          <h5>
+            Peso: {weightMin} - {weightMax} kg.
+          </h5>
+        ) : (
+          <h5>Peso: {weight} kg.</h5>
+        )}
+
         <h5>Temperamento: {renderTemperaments(temperament)}.</h5>
       </Link>
     </div>
