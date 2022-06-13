@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router(); // ME TRAIGO EL ROUTER
-const { Dog, Temperament } = require("../db"); // ME TRAIGO LA TABLA DOG
+const { Dog } = require("../db"); // ME TRAIGO LA TABLA DOG
 const getAllDogs = require("../controllers/getAllDogs");
 // ME TRAIGO EL CONTROLADOR DE OBTENER TODOS LOS PERROS.
 
@@ -62,7 +62,8 @@ router.post("/new", async (req, res) => {
       heightMax,
       weightMin,
       weightMax,
-      lifeSpan,
+      lifeSpanMin,
+      lifeSpanMax,
       temperament,
 
       img,
@@ -80,7 +81,8 @@ router.post("/new", async (req, res) => {
       heightMax,
       weightMin,
       weightMax,
-      lifeSpan,
+      lifeSpanMin,
+      lifeSpanMax,
       img,
     });
 

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterxTemperaments } from "../../store/actions";
+import styles from "./Filter.Module.css";
 
 export default function Filter() {
   let dispatch = useDispatch();
@@ -11,9 +11,9 @@ export default function Filter() {
     const valor = e.target.value;
     let fil = dogs.filter((e) => {
       if (!e.temperament) {
-        console.log(e);
-
         return false;
+      } else if (valor === "Temperamento") {
+        return e;
       }
       return e.temperament.includes(valor);
     });
@@ -21,14 +21,43 @@ export default function Filter() {
     dispatch(filterxTemperaments(fil));
   };
 
+  const onChange = (e) => {
+    e.preventDefault();
+    let valor = e.target.value;
+    var filtro = dogs.filter((e) => {
+      if (valor === "API y BD") {
+        return e;
+      } else if (valor === "Existentes y Creados") {
+        return e;
+      } else if (valor === "Existentes") {
+        return !e.createdAt;
+      } else if (valor === "Creados") {
+        return e.createdAt;
+      }
+    });
+    console.log(filtro);
+    dispatch(filterxTemperaments(filtro));
+  };
+
   return (
-    <div>
+    <div className={styles.containerFilter}>
       <div>
-        Filtrar por temperamento
-        <select name="select" onChange={(e) => cambio(e)}>
+        Filtrar por:
+        <select
+          className={styles.selectT}
+          name="select"
+          onChange={(e) => cambio(e)}
+        >
+          <option>Temperamento</option>
           {temperaments.map((e, i) => (
             <option key={i}>{e}</option>
           ))}
+        </select>
+        <select className={styles.selectABD} onChange={(e) => onChange(e)}>
+          <option>API y BD</option>
+          <option>Existentes y Creados</option>
+          <option>Existentes</option>
+          <option>Creados</option>
         </select>
       </div>
     </div>

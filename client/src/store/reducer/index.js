@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action) {
         filteredDogs: action.payload,
       };
     case SORT:
-      let orderedDogs = [...state.dogs];
+      let orderedDogs = [...state.filteredDogs];
 
       orderedDogs = orderedDogs.sort((a, b) => {
         if (a.name < b.name) {
@@ -51,20 +51,10 @@ export default function reducer(state = initialState, action) {
         filteredDogs: orderedDogs,
       };
     case SORT_WEIGHT:
-      let orderedWeight = [...state.dogs];
-
-      orderedWeight = orderedWeight.sort((a, b) => {
-        if (a.weight < b.weight) {
-          return action.payload === ASCENDENTE ? -1 : 1;
-        }
-        if (a.weight > b.weight) {
-          return action.payload === ASCENDENTE ? 1 : -1;
-        }
-        return 0;
-      });
       return {
         ...state,
-        filteredDogs: orderedWeight,
+
+        filteredDogs: action.payload,
       };
     case FILTER_TEMPERAMENT:
       return {

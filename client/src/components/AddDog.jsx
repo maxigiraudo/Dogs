@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { fetchTemperaments } from "../store/actions";
+import NavBar from "./NavBar/NavBar";
 
 export default function AddDog() {
   let temperaments = useSelector((state) => state.temperaments);
@@ -18,7 +19,7 @@ export default function AddDog() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTemperaments());
-  }, []);
+  }, [dispatch]);
 
   function validationForm(value) {
     let errors = {};
@@ -62,9 +63,8 @@ export default function AddDog() {
   console.log(dog);
   return (
     <div>
-      <Link to="/home">
-        <button>Atras</button>
-      </Link>
+      <NavBar />
+
       <h1>CREÁ A TU MEJOR AMIGO</h1>
       <form
         onSubmit={(e) => {
@@ -84,35 +84,42 @@ export default function AddDog() {
         <input
           onChange={(e) => onInputChange(e)}
           name="heightMin"
-          type="text"
+          type="number"
           value={dog.height}
         />
         <p htmlFor="">Altura Máxima: </p>
         <input
           onChange={(e) => onInputChange(e)}
           name="heightMax"
-          type="text"
+          type="number"
           value={dog.height}
         />
         <p htmlFor="">Peso Minimo: </p>
         <input
           onChange={(e) => onInputChange(e)}
           name="weightMin"
-          type="text"
+          type="number"
           value={dog.weight}
         />
         <p htmlFor="">Peso Máximo: </p>
         <input
           onChange={(e) => onInputChange(e)}
           name="weightMax"
-          type="text"
+          type="number"
           value={dog.weight}
         />
-        <p htmlFor="">Vida: </p>
+        <p htmlFor="">Esperanza de vida mínima: </p>
         <input
           onChange={(e) => onInputChange(e)}
-          name="lifeSpan"
-          type="text"
+          name="lifeSpanMin"
+          type="number"
+          value={dog.lifeSpan}
+        />
+        <p htmlFor="">Esperanza de vida máxima: </p>
+        <input
+          onChange={(e) => onInputChange(e)}
+          name="lifeSpanMax"
+          type="number"
           value={dog.lifeSpan}
         />
         <p htmlFor="">Temperamentos: </p>
