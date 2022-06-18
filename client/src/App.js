@@ -5,7 +5,7 @@ import Order from "./components/Order/Order";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { Switch, Route } from "react-router";
 import DogDetail from "./components/DogDetail/DogDetail";
-import AddDog from "./components/AddDog";
+import AddDog from "./components/AddDog/AddDog";
 import NavBar from "./components/NavBar/NavBar";
 import Filter from "./components/Filter/Filter";
 import About from "./components/About/About";

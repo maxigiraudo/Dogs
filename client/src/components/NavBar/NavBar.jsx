@@ -13,12 +13,14 @@ export default function NavBar() {
       </NavLink>
       <nav className={styles.navBar}>
         <ul className={styles.unl}>
-          <NavLink to="/about">
-            <li>About</li>
-          </NavLink>
-          <NavLink to="/add">
-            <li>Create</li>
-          </NavLink>
+          <div className={styles.navLinks}>
+            <NavLink to="/about">
+              <li>SOBRE MI</li>
+            </NavLink>
+            <NavLink to="/add">
+              <li>CREAR RAZA</li>
+            </NavLink>
+          </div>
         </ul>
       </nav>
     </header>

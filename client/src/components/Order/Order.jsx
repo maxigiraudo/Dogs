@@ -29,9 +29,13 @@ export default function Order() {
     });
     console.log(ordenPeso);
     if (valor === "Peso Ascendente") {
-      ordenPeso.sort((a, b) => a.weightMin - b.weightMin);
+      ordenPeso.sort((a, b) => {
+        return a.weightMin - b.weightMin;
+      });
     } else if (valor === "Peso Descendente") {
-      ordenPeso.sort((a, b) => b.weightMin - a.weightMin);
+      ordenPeso.sort((a, b) => {
+        return b.weightMin - a.weightMin;
+      });
     }
 
     dispatch(sort_weight(ordenPeso));

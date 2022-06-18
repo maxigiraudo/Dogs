@@ -7,7 +7,7 @@
   border: 1px solid #b7b7b7;
   -webkit-border-radius: 20px 3px;
   border-radius: 20px 3px;
-  font: normal 16px / normal "Lucida Console", Monaco, monospace;
+  font-family: "Merriweather Sans", sans-serif;
   color: rgb(0, 9, 59);
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -22,7 +22,7 @@
 }
 
 .buscar {
-  font-family: "Barlow Semi Condensed", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-family: "Oswald", sans-serif;
   font-size: 15px;
   min-width: 130px;
