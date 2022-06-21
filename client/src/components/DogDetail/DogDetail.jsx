@@ -7,19 +7,30 @@ import NavBar from "../NavBar/NavBar";
 
 export default function DogDetail() {
   const [dog, setDog] = useState(null);
+  console.log(dog);
 
   let { id } = useParams();
 
   useEffect(() => {
     axios.get("http://localhost:3001/api/dogs/" + id).then((response) => {
-      setDog(response.data);
+      const data = response.data.map((e) => {
+        let temperament = e.temperament;
+        if (!temperament && e.temperaments) {
+          temperament = e.temperaments.map((temp) => {
+            return temp.name;
+          });
+        }
+        return {
+          ...e,
+          temperament,
+        };
+      });
+      setDog(data);
     });
-
     return () => {
       setDog(null);
     };
   }, []);
-  console.log(dog);
   return (
     <div className={styles.padre}>
       <NavBar />

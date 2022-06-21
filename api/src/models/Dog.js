@@ -1,8 +1,6 @@
 const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define("dog", {
     id: {
       type: DataTypes.UUID,
@@ -32,27 +30,24 @@ module.exports = (sequelize) => {
     },
     lifeSpanMin: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     lifeSpanMax: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     img: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    temperament: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
+      allowNull: false,
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true,
     },
+    // temperament: {
+    //   type: DataTypes.ARRAY(DataTypes.STRING),
+    //   allowNull: false,
+    // },
   });
 };
-
-// ACA ME CREE LAS TABLAS, TIPO DE DATOS Y SUS ARGUMENTOS.
-// ESQUEMA PARA VALIDAR DATOS.

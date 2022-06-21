@@ -7,7 +7,7 @@ import styles from "./Dogs.module.css";
 
 export default function Dogs() {
   let dogs = useSelector((state) => state.filteredDogs);
-
+  console.log(dogs);
   const [page, setPage] = useState(1);
   const [PostPage, setPostPage] = useState(8);
 
@@ -59,6 +59,7 @@ export default function Dogs() {
               id={e.id}
               img={e.img}
               name={e.name}
+              temperaments={e.temperaments}
               temperament={e.temperament}
               weight={e.weight}
               weightMin={e.weightMin}

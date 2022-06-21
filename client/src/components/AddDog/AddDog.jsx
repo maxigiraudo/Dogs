@@ -10,6 +10,7 @@ import styles from "./AddDog.module.css";
 
 export default function AddDog() {
   let temperaments = useSelector((state) => state.temperaments);
+  console.log(temperaments);
   const [dog, setDog] = useState({
     temperament: [],
   });
@@ -82,6 +83,7 @@ export default function AddDog() {
     dog
       ? alert("Creaste a tu mejor amigo, buscalo filtrando por 'Creados'")
       : alert("Necesitas completar todos los valores");
+    console.log(dog);
   }
 
   return (

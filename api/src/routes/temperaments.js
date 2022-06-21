@@ -1,16 +1,14 @@
 const { Router } = require("express");
-const router = Router(); // importo router
-const apiInfo = require("../controllers/getApiInfo"); // me traigo el controlador de api.
-const { Temperament } = require("../db"); // me traigo la tabla temperamento.
+const apiInfo = require("../controllers/getApiInfo");
+const { Temperament } = require("../db");
+const router = Router();
 
 router.get("/", async (req, res) => {
-  // ACA ME TRAIGO LA INFO DE TEMP
-  let allTemperaments = await Temperament.findAll(); // TRAEME TODOS LOS TEMP.
+  let allTemperaments = await Temperament.findAll();
 
-  // SI ES LA PRIMERA VEZ Y NO TENGO NADA, LOS CREO DESDE LA API
   if (allTemperaments.length === 0) {
     let temperamentsRepeated = [];
-    const dogsApi = await apiInfo(); // ACA ME TRAIGO LA INFO DE LA API(CONTROLADOR).
+    const dogsApi = await apiInfo();
 
     dogsApi.forEach((dog) => {
       temperamentsRepeated = temperamentsRepeated.concat(dog.temperament);
@@ -21,7 +19,6 @@ router.get("/", async (req, res) => {
     });
 
     const temperamentsToInsert = uniqueTemperaments.map((temp) => {
-      // temperamentsToInsert = [{ name: 'Curious' }, { name: 'Funny' }, ...]
       return {
         name: temp,
       };
@@ -30,7 +27,7 @@ router.get("/", async (req, res) => {
     allTemperaments = await Temperament.bulkCreate(temperamentsToInsert);
   }
 
-  return res.status(200).send(allTemperaments); // RETORNAME EL ESTADO OK
+  return res.status(200).send(allTemperaments);
 });
 
 module.exports = router;

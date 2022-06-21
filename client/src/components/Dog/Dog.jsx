@@ -6,6 +6,7 @@ export default function Dog({
   name,
   img,
   temperament,
+  temperaments,
   weight,
   weightMin,
   weightMax,
@@ -13,8 +14,10 @@ export default function Dog({
   function renderTemperaments(temperament) {
     if (temperament) {
       return temperament.join(", ");
+    } else if (temperaments) {
+      return temperaments.join(", ");
     }
-    return "Error";
+    return "Este error";
   }
 
   return (

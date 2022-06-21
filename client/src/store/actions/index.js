@@ -12,9 +12,21 @@ export function fetchDogs() {
     axios
       .get("http://localhost:3001/api/dogs")
       .then((dogs) => {
+        const data = dogs.data.map((dog) => {
+          let temperament = dog.temperament;
+          if (!temperament && dog.temperaments) {
+            temperament = dog.temperaments.map((temp) => {
+              return temp.name;
+            });
+          }
+          return {
+            ...dog,
+            temperament,
+          };
+        });
         dispatch({
           type: FETCH_DOGS,
-          payload: dogs.data,
+          payload: data,
         });
       })
       .catch((error) => {
@@ -44,9 +56,21 @@ export function searchDogs(search) {
     axios
       .get("http://localhost:3001/api/dogs?name=" + search)
       .then((dogs) => {
+        const data = dogs.data.map((dog) => {
+          let temperament = dog.temperament;
+          if (!temperament && dog.temperaments) {
+            temperament = dog.temperaments.map((temp) => {
+              return temp.name;
+            });
+          }
+          return {
+            ...dog,
+            temperament,
+          };
+        });
         dispatch({
           type: SEARCH_DOGS,
-          payload: dogs.data,
+          payload: data,
         });
       })
       .catch((error) => {
