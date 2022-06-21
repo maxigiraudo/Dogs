@@ -1,4 +1,4 @@
-import { ASCENDENTE, DESCENDENTE } from "../../constantes/sort";
+import { ASCENDENTE } from "../../constantes/sort";
 import {
   FETCH_DOGS,
   FETCH_TEMPERAMENTS,

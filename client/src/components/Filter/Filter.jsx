@@ -35,7 +35,7 @@ export default function Filter() {
         return e.createdAt;
       }
     });
-    console.log(filtro);
+
     dispatch(filterxTemperaments(filtro));
   };
 

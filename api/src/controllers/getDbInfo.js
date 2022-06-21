@@ -11,17 +11,6 @@ module.exports = async function getDbInfo() {
       },
     },
   });
-  // console.log("INFO DB", infoDb);
-  // if (infoDb.length) {
-  //   infoDb = infoDb.map((dog) => {
-  //     if (dog.dataValues && dog.dataValues.temperaments) {
-  //       const temperament = dog.dataValues.temperaments;
-  //     }
-  //     return {
-  //       ...dog,
-  //       temperament,
-  //     };
-  //   });
-  // }
+
   return infoDb;
 };

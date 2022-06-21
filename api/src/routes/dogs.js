@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
       const allDogs = await getAllDogs();
       const filtered = allDogs.filter((dog) => dog.id == id);
       if (filtered.length > 0) return res.status(200).send(filtered);
-      return res.status(404).send("The ID was not found");
+      return res.status(404).send("El id no se encontro");
     }
   } catch (e) {
     console.log(e);
@@ -74,23 +74,5 @@ router.post("/new", async (req, res) => {
     res.status(404).json(err);
   }
 });
-
-// router.put("/:id", async (req, res) => {
-//   try {
-//     let { id } = req.params;
-//     let { name } = req.body;
-//     await Dog.update(
-//       { name },
-//       {
-//         where: {
-//           id,
-//         },
-//       }
-//     );
-//     res.status(200).send("Usuario actualizado");
-//   } catch (error) {
-//     res.status(400).send("No se pudo hacer ni bosta");
-//   }
-// });
 
 module.exports = router;

@@ -33,7 +33,7 @@ export default function Dog({
           <h5>Peso: {weight} kg.</h5>
         )}
 
-        <h5>Temperamento: {renderTemperaments(temperament)}.</h5>
+        <h5>Temperamentos: {renderTemperaments(temperament)}.</h5>
       </Link>
     </div>
   );

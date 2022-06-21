@@ -39,6 +39,7 @@ export default function Order() {
     }
 
     dispatch(sort_weight(ordenPeso));
+    console.log(filteredDogs);
   };
 
   return (

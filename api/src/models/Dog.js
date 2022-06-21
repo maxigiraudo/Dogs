@@ -45,9 +45,5 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: true,
     },
-    // temperament: {
-    //   type: DataTypes.ARRAY(DataTypes.STRING),
-    //   allowNull: false,
-    // },
   });
 };

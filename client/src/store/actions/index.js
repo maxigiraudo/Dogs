@@ -1,5 +1,5 @@
 import axios from "axios";
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 export const FETCH_DOGS = "FETCH_DOGS";
 export const SEARCH_DOGS = "SEARCH_DOGS";
 export const SORT = "SORT";
