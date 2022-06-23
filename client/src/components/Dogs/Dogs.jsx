@@ -7,6 +7,7 @@ import styles from "./Dogs.module.css";
 
 export default function Dogs() {
   let dogs = useSelector((state) => state.filteredDogs);
+
   console.log(dogs);
   const [page, setPage] = useState(1);
   const [PostPage, setPostPage] = useState(8);
@@ -15,7 +16,10 @@ export default function Dogs() {
   const firstPostPage = PostPagOne - PostPage;
   const PostByPage = dogs.slice(firstPostPage, PostPagOne);
   const maxPages = Math.ceil(dogs.length / 8);
-  console.log(PostByPage);
+
+  useEffect(() => {
+    setPage(1);
+  }, [dogs]);
 
   let dispatch = useDispatch();
   useEffect(() => {
@@ -41,14 +45,13 @@ export default function Dogs() {
       setPage(page + 1);
     }
   }
-  console.log(page);
 
   const handlePageChange = (e) => {
     document.getElementById("paginas").innerText = `Página ${e.target.value}`;
     document.getElementById("unadetantas").innerText = ` /${maxPages}`;
     e.target.value ? setPage(e.target.value) : setPage(1);
   };
-  console.log(dogs);
+
   return (
     <div className={styles.padre}>
       <div className={styles.carDog}>
