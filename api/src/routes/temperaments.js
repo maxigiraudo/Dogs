@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
       temperamentsRepeated = temperamentsRepeated.concat(dog.temperament);
     });
 
+
     const uniqueTemperaments = temperamentsRepeated.filter((temp, index) => {
       return temperamentsRepeated.indexOf(temp) === index;
     });
