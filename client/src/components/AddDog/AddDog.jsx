@@ -77,9 +77,11 @@ export default function AddDog() {
 
   function onSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:3001/api/dogs/new", dog).then(() => {
-      history.push("/");
-    });
+    axios
+      .post("https://dogs-api-back-end.herokuapp.com/api/dogs/new", dog)
+      .then(() => {
+        history.push("/");
+      });
     dog
       ? alert("Creaste a tu mejor amigo, buscalo filtrando por 'Creados'")
       : alert("Necesitas completar todos los valores");

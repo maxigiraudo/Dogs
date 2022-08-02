@@ -10,7 +10,7 @@ export const FETCH_TEMPERAMENTS = "FETCH_TEMPERAMENTS";
 export function fetchDogs() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/api/dogs")
+      .get("https://dogs-api-back-end.herokuapp.com/api/dogs")
       .then((dogs) => {
         const data = dogs.data.map((dog) => {
           let temperament = dog.temperament;
@@ -38,7 +38,7 @@ export function fetchDogs() {
 export function fetchTemperaments() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/api/temperaments")
+      .get("https://dogs-api-back-end.herokuapp.com/api/temperaments")
       .then((temperaments) => {
         dispatch({
           type: FETCH_TEMPERAMENTS,
@@ -54,7 +54,7 @@ export function fetchTemperaments() {
 export function searchDogs(search) {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/api/dogs?name=" + search)
+      .get("https://dogs-api-back-end.herokuapp.com/api/dogs?name=" + search)
       .then((dogs) => {
         const data = dogs.data.map((dog) => {
           let temperament = dog.temperament;

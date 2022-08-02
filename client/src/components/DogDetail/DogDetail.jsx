@@ -11,21 +11,23 @@ export default function DogDetail() {
   let { id } = useParams();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/dogs/" + id).then((response) => {
-      const data = response.data.map((e) => {
-        let temperament = e.temperament;
-        if (!temperament && e.temperaments) {
-          temperament = e.temperaments.map((temp) => {
-            return temp.name;
-          });
-        }
-        return {
-          ...e,
-          temperament,
-        };
+    axios
+      .get("https://dogs-api-back-end.herokuapp.com/api/dogs/" + id)
+      .then((response) => {
+        const data = response.data.map((e) => {
+          let temperament = e.temperament;
+          if (!temperament && e.temperaments) {
+            temperament = e.temperaments.map((temp) => {
+              return temp.name;
+            });
+          }
+          return {
+            ...e,
+            temperament,
+          };
+        });
+        setDog(data);
       });
-      setDog(data);
-    });
     return () => {
       setDog(null);
     };
