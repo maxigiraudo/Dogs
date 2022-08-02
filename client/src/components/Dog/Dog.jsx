@@ -19,7 +19,7 @@ export default function Dog({
     }
     return "Este error";
   }
-
+  console.log("hola");
   return (
     <div className={styles.card}>
       <Link to={`/${id}`}>
